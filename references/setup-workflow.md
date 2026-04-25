@@ -141,7 +141,7 @@ done
 # <<< windows-bash-zsh <<<
 ```
 
-写入 `~/.bashrc` 时使用 `assets/bashrc-block.sh`。写入 `~/.zshrc` 时使用 `assets/zshrc-block.zsh`。
+写入 `~/.bashrc` 时使用 `assets/bashrc-block.sh`。写入 `~/.zshrc` 时使用 `assets/zshrc-block.zsh`，该模板会默认写入 Windows 上类似 macOS 的 `open` 辅助命令。
 
 ## 验证
 

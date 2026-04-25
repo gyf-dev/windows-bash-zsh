@@ -37,4 +37,18 @@ fi
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
+
+open() {
+  if [ $# -eq 0 ]; then
+    explorer .
+  else
+    for arg in "$@"; do
+      if [[ "$arg" == *.* ]]; then
+        start "" "$arg"
+      else
+        notepad "$arg"
+      fi
+    done
+  fi
+}
 # <<< windows-bash-zsh <<<

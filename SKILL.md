@@ -21,7 +21,7 @@ description: 在 Windows 的 Git Bash 中配置、修复或说明 zsh、Oh My Zs
 
 - `assets/starship.toml`：Catppuccin Mocha 风格的 Starship 配置。
 - `assets/bashrc-block.sh`：托管的 `.bashrc` 配置块，负责设置 UTF-8、暴露 `~/bin`，并在 zsh 可用时自动进入 zsh。
-- `assets/zshrc-block.zsh`：托管的 `.zshrc` 配置块，包含 PATH、fzf、Oh My Zsh 插件和 Starship 初始化。
+- `assets/zshrc-block.zsh`：托管的 `.zshrc` 配置块，包含 PATH、fzf、Oh My Zsh 插件、Starship 初始化，以及 Windows 上的 `open` 辅助命令。
 - `references/setup-workflow.md`：详细安装、更新、回退和排障流程。
 
 当用户需要逐步安装、排障或可执行命令时，读取 `references/setup-workflow.md`。当需要创建或更新配置文件时，直接使用 `assets/` 中的模板。
