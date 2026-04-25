@@ -1,0 +1,17 @@
+git
+extract
+z
+sudo
+web-search
+copypath
+copyfile
+dirhistory
+jsontools
+command-not-found
+npm
+node
+fzf
+zsh-autosuggestions
+zsh-syntax-highlighting
+history-substring-search
+you-should-use

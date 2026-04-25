@@ -1,0 +1,10 @@
+{
+  "name": "Git Bash",
+  "commandline": "C:\\Program Files\\Git\\bin\\bash.exe -l -i",
+  "startingDirectory": "%USERPROFILE%",
+  "icon": "C:\\Program Files\\Git\\git-bash.exe",
+  "font": {
+    "face": "FiraCode Nerd Font Mono",
+    "size": 12
+  }
+}

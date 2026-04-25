@@ -1,4 +1,3 @@
-# >>> windows-bash-zsh >>>
 export PATH="$HOME/bin:$PATH"
 
 if command -v starship >/dev/null 2>&1; then
@@ -12,4 +11,3 @@ fi
 if [ -t 1 ] && command -v zsh >/dev/null 2>&1 && [ -z "$ZSH_VERSION" ]; then
   exec zsh
 fi
-# <<< windows-bash-zsh <<<

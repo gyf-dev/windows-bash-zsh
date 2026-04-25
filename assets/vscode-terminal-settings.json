@@ -1,0 +1,6 @@
+{
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.defaultProfile.windows": "Git Bash"
+}
