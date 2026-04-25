@@ -1,6 +1,12 @@
 # windows-bash-zsh
 
-English | [简体中文](README.md)
+<p align="center">
+  <img src="logo.png" alt="windows-bash-zsh logo" width="180">
+</p>
+
+<p align="center">
+  English | <a href="README.md">简体中文</a>
+</p>
 
 Quickly configure a Git Bash terminal environment on Windows, including Zsh, Oh My Zsh, the Starship prompt, and common plugins.
 
@@ -26,48 +32,19 @@ Reusable configuration templates are in [assets](assets/):
 ## Workflow Diagram
 
 ```mermaid
-flowchart LR
-  subgraph P["Prepare"]
-    A["Windows 10/11"]
-    B["Git Bash"]
-    C["Nerd Font"]
-  end
+flowchart TB
+  A["Prepare<br/>Windows / Git Bash / Nerd Font"]
+  B["Install<br/>Starship / zsh / Oh My Zsh / fzf"]
+  C["Configure<br/>starship.toml / .bashrc / .zshrc"]
+  D["Experience<br/>Polished prompt / Suggestions / open command"]
 
-  subgraph I["Install Core"]
-    D["Starship"]
-    E["zsh"]
-    F["Oh My Zsh"]
-    G["fzf and plugins"]
-  end
+  A --> B --> C --> D
 
-  subgraph Cfg["Managed Config"]
-    H["starship.toml"]
-    I1[".bashrc block"]
-    J[".zshrc block"]
-  end
+  classDef step fill:#0f172a,stroke:#38bdf8,stroke-width:1.5px,color:#f8fafc
+  classDef done fill:#052e16,stroke:#22c55e,stroke-width:1.5px,color:#f0fdf4
 
-  subgraph R["Result"]
-    K["Polished prompt"]
-    L["Autosuggestions and highlighting"]
-    M["macOS-like open command"]
-  end
-
-  A --> B --> C --> D --> E --> F --> G --> H
-  H --> I1
-  I1 --> J
-  J --> K
-  J --> L
-  J --> M
-
-  classDef prep fill:#e0f2fe,stroke:#0284c7,color:#0f172a
-  classDef install fill:#fef3c7,stroke:#d97706,color:#0f172a
-  classDef config fill:#ede9fe,stroke:#7c3aed,color:#0f172a
-  classDef result fill:#dcfce7,stroke:#16a34a,color:#0f172a
-
-  class A,B,C prep
-  class D,E,F,G install
-  class H,I1,J config
-  class K,L,M result
+  class A,B,C step
+  class D done
 ```
 
 ## Requirements

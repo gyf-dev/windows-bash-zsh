@@ -1,6 +1,12 @@
 # windows-bash-zsh
 
-[English](README-EN.md) | 简体中文
+<p align="center">
+  <img src="logo.png" alt="windows-bash-zsh logo" width="180">
+</p>
+
+<p align="center">
+  <a href="README-EN.md">English</a> | 简体中文
+</p>
 
 为 Windows 快速配置 Git Bash 终端环境，包括 Zsh、Oh My Zsh、Starship 主题和常用插件。
 
@@ -26,48 +32,19 @@
 ## 流程示意图
 
 ```mermaid
-flowchart LR
-  subgraph P["准备环境"]
-    A["Windows 10/11"]
-    B["Git Bash"]
-    C["Nerd Font"]
-  end
+flowchart TB
+  A["准备环境<br/>Windows / Git Bash / Nerd Font"]
+  B["安装组件<br/>Starship / zsh / Oh My Zsh / fzf"]
+  C["写入配置<br/>starship.toml / .bashrc / .zshrc"]
+  D["终端体验<br/>美观提示符 / 自动建议 / open 命令"]
 
-  subgraph I["安装核心组件"]
-    D["Starship"]
-    E["zsh"]
-    F["Oh My Zsh"]
-    G["fzf 与常用插件"]
-  end
+  A --> B --> C --> D
 
-  subgraph Cfg["写入托管配置"]
-    H["starship.toml"]
-    I1[".bashrc 托管块"]
-    J[".zshrc 托管块"]
-  end
+  classDef step fill:#0f172a,stroke:#38bdf8,stroke-width:1.5px,color:#f8fafc
+  classDef done fill:#052e16,stroke:#22c55e,stroke-width:1.5px,color:#f0fdf4
 
-  subgraph R["最终体验"]
-    K["美观提示符"]
-    L["自动建议与语法高亮"]
-    M["macOS-like open 命令"]
-  end
-
-  A --> B --> C --> D --> E --> F --> G --> H
-  H --> I1
-  I1 --> J
-  J --> K
-  J --> L
-  J --> M
-
-  classDef prep fill:#e0f2fe,stroke:#0284c7,color:#0f172a
-  classDef install fill:#fef3c7,stroke:#d97706,color:#0f172a
-  classDef config fill:#ede9fe,stroke:#7c3aed,color:#0f172a
-  classDef result fill:#dcfce7,stroke:#16a34a,color:#0f172a
-
-  class A,B,C prep
-  class D,E,F,G install
-  class H,I1,J config
-  class K,L,M result
+  class A,B,C step
+  class D done
 ```
 
 ## 环境要求
