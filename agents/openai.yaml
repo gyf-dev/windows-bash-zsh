@@ -1,0 +1,7 @@
+interface:
+  display_name: "Windows Bash Zsh"
+  short_description: "Set up zsh, Starship, and plugins in Git Bash"
+  default_prompt: "使用 $windows-bash-zsh 配置我的 Windows Bash 终端，集成 zsh、Starship、Oh My Zsh 和常用插件。"
+
+policy:
+  allow_implicit_invocation: true
