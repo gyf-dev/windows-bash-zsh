@@ -5,140 +5,143 @@
 </p>
 
 <p align="center">
-  <a href="README-EN.md">English</a> | 简体中文
+  English | <a href="README-ZH.md">简体中文</a>
 </p>
 
-把 Windows 上的 Git Bash 打造成接近 macOS/Linux 体验的 zsh 终端环境：集成 Windows Terminal、Oh My Zsh、Starship、fzf、常用 zsh 插件，以及 bat、ripgrep、lsd、yazi 等现代 CLI 工具。
+Turn Git Bash on Windows into a zsh terminal environment close to the macOS/Linux experience: Windows Terminal, Oh My Zsh, Starship, fzf, common zsh plugins, and modern CLI tools such as bat, ripgrep, lsd, and yazi.
 
-## 效果图
+## Screenshot
 
-![windows-bash-zsh 效果图](效果图.png)
+![windows-bash-zsh screenshot](screenshot.png)
 
-## 快速开始
+## Quick Start
 
-### 下载或者克隆本项目到电脑上
+### Download or clone this project to your computer
+
 ```shell
- git clone git@github.com:gyf-dev/windows-bash-zsh.git
+git clone git@github.com:gyf-dev/windows-bash-zsh.git
 ```
 
-### 安装
+### Install
 
-PowerShell：
+PowerShell:
 
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1
+powershell.exe -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
-CMD：
+CMD:
 
 ```cmd
-install-to-skills.cmd
+install.cmd
 ```
 
-Bash：
+`install.cmd` prefers `install.ps1` in the same directory. If neither `powershell.exe` nor `pwsh.exe` is available, it automatically falls back to a pure CMD install/uninstall path.
+
+Bash:
 
 ```shell
-bash install-to-skills.sh
+bash install.sh
 ```
 
-默认目标：
+Default targets:
 
-- Codex：`~\.codex\skills\windows-bash-zsh`
-- Claude：`~\.claude\skills\windows-bash-zsh`
-- Agents：`~\.agents\skills\windows-bash-zsh`
-- Copilot：`~\.copilot\skills\windows-bash-zsh`
+- Codex: `~\.codex\skills\windows-bash-zsh`
+- Claude: `~\.claude\skills\windows-bash-zsh`
+- Agents: `~\.agents\skills\windows-bash-zsh`
+- Copilot: `~\.copilot\skills\windows-bash-zsh`
 
-### 卸载
+### Uninstall
 
-PowerShell：
+PowerShell:
 
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Uninstall
+powershell.exe -ExecutionPolicy Bypass -File .\install.ps1 -Uninstall
 ```
 
-CMD：
+CMD:
 
 ```cmd
-install-to-skills.cmd -Uninstall
+install.cmd -Uninstall
 ```
 
-Bash：
+Bash:
 
 ```shell
-bash install-to-skills.sh --uninstall
+bash install.sh --uninstall
 ```
 
-### 其他
+### Other
 
-PowerShell：
+PowerShell:
 
 ```powershell
-# 只安装到指定目标，例如 Codex
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets codex
+# Install only to a target, for example Codex
+powershell.exe -ExecutionPolicy Bypass -File .\install.ps1 -Targets codex
 
-# 只从 Copilot 卸载
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets copilot -Uninstall
+# Uninstall only from Copilot
+powershell.exe -ExecutionPolicy Bypass -File .\install.ps1 -Targets copilot -Uninstall
 
-# 额外安装到自定义 skills 目录
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -ExtraSkillRoots "D:\MyAgent\skills"
+# Also install to a custom skills directory
+powershell.exe -ExecutionPolicy Bypass -File .\install.ps1 -ExtraSkillRoots "D:\MyAgent\skills"
 ```
 
-CMD：
+CMD:
 
 ```cmd
-# 只安装到指定目标，例如 Codex
-install-to-skills.cmd -Targets codex
+# Install only to a target, for example Codex
+install.cmd -Targets codex
 
-# 只从 Copilot 卸载
-install-to-skills.cmd -Targets copilot -Uninstall
+# Uninstall only from Copilot
+install.cmd -Targets copilot -Uninstall
 
-# 额外安装到自定义 skills 目录
-install-to-skills.cmd -ExtraSkillRoots "D:\MyAgent\skills"
+# Also install to a custom skills directory
+install.cmd -ExtraSkillRoots "D:\MyAgent\skills"
 ```
 
-Bash：
+Bash:
 
 ```shell
-# 只安装到指定目标，例如 Codex
-bash install-to-skills.sh --targets codex
+# Install only to a target, for example Codex
+bash install.sh --targets codex
 
-# 只从 Copilot 卸载
-bash install-to-skills.sh --targets copilot --uninstall
+# Uninstall only from Copilot
+bash install.sh --targets copilot --uninstall
 
-# 额外安装到自定义 skills 目录
-bash install-to-skills.sh --extra-skill-roots "D:/MyAgent/skills"
+# Also install to a custom skills directory
+bash install.sh --extra-skill-roots "D:/MyAgent/skills"
 ```
 
-`-ExtraSkillRoots` 是用户显式指定的目标；安装时如果目录不存在，脚本会创建它。安装遇到同名 Skill 时会询问是否替换，输入 `y` 才会覆盖，否则跳过。卸载时只删除目标目录下的 `windows-bash-zsh`，不会删除 skills 根目录。
+`-ExtraSkillRoots` is an explicit target; during installation, the script creates it when it does not exist. If the same Skill already exists, the script asks whether to replace it; press Enter or enter `y` to overwrite, and enter `n` to skip. During uninstall, only the `windows-bash-zsh` directory under the target root is removed; the skills root is kept.
 
-## 功能特性
+## Features
 
-- **Windows Terminal 集成**：添加 Git Bash profile，配置默认终端、字体和常用快捷键。
-- **Zsh + Oh My Zsh**：在 Git Bash 中安装并启用 zsh、Oh My Zsh 和常用插件。
-- **Starship 主题**：使用 Catppuccin Mocha 风格的提示符配置。
-- **现代 CLI 工具**：集成 bat、ripgrep、lsd、yazi，以及 yazi 预览所需的 7-Zip、ImageMagick、FFmpeg。
-- **macOS-like open**：在 Windows 中提供类似 macOS 的 `open` 命令。
-- **幂等配置**：只补齐缺失配置，不整文件覆盖 `.bashrc`、`.zshrc`、Windows Terminal 或 VS Code 配置。
+- **Windows Terminal integration**: Add a Git Bash profile, configure the default terminal, font, and common shortcuts.
+- **Zsh + Oh My Zsh**: Install and enable zsh, Oh My Zsh, and common plugins inside Git Bash.
+- **Starship prompt**: Use a Catppuccin Mocha style prompt configuration.
+- **Modern CLI tools**: Integrate bat, ripgrep, lsd, yazi, plus yazi preview dependencies: 7-Zip, ImageMagick, and FFmpeg.
+- **macOS-like open**: Provide a macOS-like `open` command on Windows.
+- **Idempotent configuration**: Fill in missing configuration only; do not overwrite `.bashrc`, `.zshrc`, Windows Terminal, or VS Code settings.
 
-## 环境要求
+## Requirements
 
 - Windows 10/11
-- Git for Windows（Git Bash）
-- Windows Terminal：Windows 11 通常自带；Windows 10 可从 [Microsoft Terminal Releases](https://github.com/microsoft/terminal/releases/) 安装
-- PowerShell：Windows PowerShell 5.1 即可；PowerShell 7 可选
-- Windows Package Manager（winget，用于安装 Starship 和 CLI 工具）
-- Python 3（用于安全解压 zsh 包）
-- 管理员权限（用于把 zsh 文件复制到 Git 安装目录）
+- Git for Windows, including Git Bash
+- Windows Terminal: usually bundled with Windows 11; Windows 10 users can install it from [Microsoft Terminal Releases](https://github.com/microsoft/terminal/releases/)
+- PowerShell: Windows PowerShell 5.1 is enough; PowerShell 7 is optional
+- Windows Package Manager, winget, for installing Starship and CLI tools
+- Python 3 for safely extracting the zsh package
+- Administrator permission for copying zsh files into the Git installation directory
 
-## 流程示意图
+## Workflow Diagram
 
 ```mermaid
 flowchart LR
-  A["准备<br/>PowerShell / Windows Terminal / Git Bash"]
-  B["安装<br/>Starship / zsh / Oh My Zsh"]
-  C["增强<br/>fzf / zsh plugins / CLI tools"]
-  D["配置<br/>.bashrc / .zshrc / starship.toml"]
-  E["验证<br/>新终端体验"]
+  A["Prepare<br/>PowerShell / Windows Terminal / Git Bash"]
+  B["Install<br/>Starship / zsh / Oh My Zsh"]
+  C["Enhance<br/>fzf / zsh plugins / CLI tools"]
+  D["Configure<br/>.bashrc / .zshrc / starship.toml"]
+  E["Verify<br/>New terminal experience"]
 
   A --> B --> C --> D --> E
 

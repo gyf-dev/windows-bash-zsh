@@ -122,8 +122,8 @@ function Install-OneTarget {
       Remove-Item -LiteralPath $destination -Recurse -Force
       Write-Host "Replaced existing $Name skill: $destination"
     } else {
-      $answer = Read-Host "Existing $Name skill found at $destination. Replace? [y/N]"
-      if ($answer -notin @("y", "Y")) {
+      $answer = Read-Host "Existing $Name skill found at $destination. Replace? [Y/n]"
+      if ($answer -in @("n", "N")) {
         Write-Host "Skipped ${Name}: existing skill was kept."
         return
       }

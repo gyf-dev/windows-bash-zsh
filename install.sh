@@ -9,7 +9,7 @@ uninstall=0
 
 usage() {
   cat <<'EOF'
-Usage: bash install-to-skills.sh [options]
+Usage: bash install.sh [options]
 
 Options:
   --targets <list>           Target list: all,codex,claude,agents,copilot
@@ -20,11 +20,11 @@ Options:
   -h, --help                 Show this help
 
 Examples:
-  bash install-to-skills.sh
-  bash install-to-skills.sh --dry-run
-  bash install-to-skills.sh --targets codex
-  bash install-to-skills.sh --targets copilot --uninstall
-  bash install-to-skills.sh --extra-skill-roots "D:/MyAgent/skills"
+  bash install.sh
+  bash install.sh --dry-run
+  bash install.sh --targets codex
+  bash install.sh --targets copilot --uninstall
+  bash install.sh --extra-skill-roots "D:/MyAgent/skills"
 EOF
 }
 
@@ -160,18 +160,18 @@ install_one() {
       echo "Replaced existing $name skill: $destination"
     else
       local answer
-      if ! read -r -p "Existing $name skill found at $destination. Replace? [y/N] " answer; then
+      if ! read -r -p "Existing $name skill found at $destination. Replace? [Y/n] " answer; then
         answer=""
       fi
 
       case "$answer" in
-        y|Y)
-          rm -rf "$destination"
-          echo "Replaced existing $name skill: $destination"
-          ;;
-        *)
+        n|N)
           echo "Skipped $name: existing skill was kept."
           return
+          ;;
+        *)
+          rm -rf "$destination"
+          echo "Replaced existing $name skill: $destination"
           ;;
       esac
     fi
