@@ -8,61 +8,105 @@
   <a href="README-EN.md">English</a> | 简体中文
 </p>
 
-为 Windows 快速配置 Git Bash 终端环境，包括 Zsh、Oh My Zsh、Starship 主题和常用插件。
+把 Windows 上的 Git Bash 打造成接近 macOS/Linux 体验的 zsh 终端环境：集成 Windows Terminal、Oh My Zsh、Starship、fzf、常用 zsh 插件，以及 bat、ripgrep、lsd、yazi 等现代 CLI 工具。
 
 ## 功能特性
 
-- **Starship 主题** - Catppuccin Mocha 配色，美观的命令行提示符
-- **Zsh + Oh My Zsh** - 强大的 Shell 框架和插件管理
-- **常用插件** - 自动建议、语法高亮、fzf 模糊搜索等
-- **现代 CLI 工具** - 集成 bat、ripgrep、lsd、yazi 以及 yazi 预览依赖
-- **open 命令** - 在 Windows 上提供类似 macOS 的 `open` 命令
-- **一键配置** - 按照 SKILL.md 步骤操作即可完成配置
-
-## 快速开始
-
-查看 [SKILL.md](SKILL.md) 了解技能的触发场景和执行流程。
-
-详细安装、更新、回退和排障步骤在 [references/setup-workflow.md](references/setup-workflow.md)。
-可复用配置模板在 [assets](assets/) 目录：
-
-- `starship.toml`：Starship 主题配置
-- `bashrc-block.sh`：可幂等写入 `.bashrc` 的托管配置块
-- `zshrc-block.zsh`：可幂等写入 `.zshrc` 的托管配置块
-- `cli-tools-aliases.zsh`：现代 CLI 工具别名和 7-Zip PATH 片段
-- `bat-config`：bat 推荐配置
-
-现代 CLI 工具安装脚本在 [scripts/cli-tools.sh](scripts/cli-tools.sh)，支持 `install`、`status` 和 `uninstall`。
-
-## 流程示意图
-
-```mermaid
-flowchart TB
-  A["准备环境<br/>Windows / Git Bash / Nerd Font"]
-  B["安装组件<br/>Starship / zsh / Oh My Zsh / CLI tools"]
-  C["写入配置<br/>starship.toml / .bashrc / .zshrc"]
-  D["终端体验<br/>美观提示符 / 自动建议 / 快速搜索"]
-
-  A --> B --> C --> D
-
-  classDef step fill:#0f172a,stroke:#38bdf8,stroke-width:1.5px,color:#f8fafc
-  classDef done fill:#052e16,stroke:#22c55e,stroke-width:1.5px,color:#f0fdf4
-
-  class A,B,C step
-  class D done
-```
+- **Windows Terminal 集成**：添加 Git Bash profile，配置默认终端、字体和常用快捷键。
+- **Zsh + Oh My Zsh**：在 Git Bash 中安装并启用 zsh、Oh My Zsh 和常用插件。
+- **Starship 主题**：使用 Catppuccin Mocha 风格的提示符配置。
+- **现代 CLI 工具**：集成 bat、ripgrep、lsd、yazi，以及 yazi 预览所需的 7-Zip、ImageMagick、FFmpeg。
+- **macOS-like open**：在 Windows 中提供类似 macOS 的 `open` 命令。
+- **幂等配置**：只补齐缺失配置，不整文件覆盖 `.bashrc`、`.zshrc`、Windows Terminal 或 VS Code 配置。
 
 ## 环境要求
 
 - Windows 10/11
 - Git for Windows（Git Bash）
+- Windows Terminal：Windows 11 通常自带；Windows 10 可从 [Microsoft Terminal Releases](https://github.com/microsoft/terminal/releases/) 安装
+- PowerShell：Windows PowerShell 5.1 即可；PowerShell 7 可选
 - Windows Package Manager（winget，用于安装 Starship 和 CLI 工具）
-- Python 3（用于解压 zsh 包）
-- 管理员权限（用于复制 zsh 文件到 Git 目录）
+- Python 3（用于安全解压 zsh 包）
+- 管理员权限（用于把 zsh 文件复制到 Git 安装目录）
 
 ## 效果图
 
 ![windows-bash-zsh 效果图](效果图.png)
+
+## 快速开始
+
+### 下载或者克隆本项目到电脑上
+```shell
+ git clone git@github.com:gyf-dev/windows-bash-zsh.git
+```
+
+### 安装到skills中
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1
+```
+
+也可以使用 CMD 入口：
+
+```cmd
+install-to-skills.cmd
+```
+
+默认目标：
+
+- Codex：`~\.codex\skills\windows-bash-zsh`
+- Claude：`~\.claude\skills\windows-bash-zsh`
+- Agents：`~\.agents\skills\windows-bash-zsh`
+- Copilot：`~\.copilot\skills\windows-bash-zsh`
+
+其他可选命令：
+
+```powershell
+# 只安装到 Codex
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets codex
+install-to-skills.cmd -Targets codex
+
+# 只安装到 Copilot
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets copilot
+install-to-skills.cmd -Targets copilot
+
+# 预览将要安装到哪里，不实际写入
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -DryRun
+install-to-skills.cmd -DryRun
+
+# 卸载默认目标中已安装的 windows-bash-zsh
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Uninstall
+install-to-skills.cmd -Uninstall
+
+# 只从 Copilot 卸载
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets copilot -Uninstall
+install-to-skills.cmd -Targets copilot -Uninstall
+
+# 额外安装到自定义 skills 目录
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -ExtraSkillRoots "D:\MyAgent\skills"
+install-to-skills.cmd -ExtraSkillRoots "D:\MyAgent\skills"
+```
+
+`-ExtraSkillRoots` 是用户显式指定的目标；安装时如果目录不存在，脚本会创建它。卸载时只删除目标目录下的 `windows-bash-zsh`，不会删除备份目录或 skills 根目录。
+
+## 流程示意图
+
+```mermaid
+flowchart LR
+  A["准备<br/>PowerShell / Windows Terminal / Git Bash"]
+  B["安装<br/>Starship / zsh / Oh My Zsh"]
+  C["增强<br/>fzf / zsh plugins / CLI tools"]
+  D["配置<br/>.bashrc / .zshrc / starship.toml"]
+  E["验证<br/>新终端体验"]
+
+  A --> B --> C --> D --> E
+
+  classDef base fill:#0f172a,stroke:#38bdf8,stroke-width:1.5px,color:#f8fafc
+  classDef final fill:#052e16,stroke:#22c55e,stroke-width:1.5px,color:#f0fdf4
+
+  class A,B,C,D base
+  class E final
+```
 
 ## Star History
 
