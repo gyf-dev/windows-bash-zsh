@@ -7,7 +7,7 @@ param(
 
   [switch] $DryRun,
 
-  [switch] $NoBackup,
+  [switch] $Yes,
 
   [switch] $Uninstall
 )
@@ -95,8 +95,6 @@ function Install-OneTarget {
   )
 
   $destination = Join-Path $SkillRoot $SkillName
-  $timestamp = Get-Date -Format "yyyyMMddHHmmss"
-  $backup = Join-Path $SkillRoot "$SkillName.backup.$timestamp"
 
   if (-not (Test-Path -LiteralPath $SkillRoot)) {
     if ($CreateRoot) {
@@ -114,18 +112,24 @@ function Install-OneTarget {
   if ($DryRun) {
     Write-Host "[dry-run] $Name -> $destination"
     if (Test-Path -LiteralPath $destination) {
-      Write-Host "[dry-run] existing skill would be moved to $backup"
+      Write-Host "[dry-run] existing skill would prompt for replacement: $destination"
     }
     return
   }
 
   if (Test-Path -LiteralPath $destination) {
-    if ($NoBackup) {
+    if ($Yes) {
       Remove-Item -LiteralPath $destination -Recurse -Force
-      Write-Host "Removed existing $Name skill: $destination"
+      Write-Host "Replaced existing $Name skill: $destination"
     } else {
-      Move-Item -LiteralPath $destination -Destination $backup
-      Write-Host "Backed up existing $Name skill: $backup"
+      $answer = Read-Host "Existing $Name skill found at $destination. Replace? [y/N]"
+      if ($answer -notin @("y", "Y")) {
+        Write-Host "Skipped ${Name}: existing skill was kept."
+        return
+      }
+
+      Remove-Item -LiteralPath $destination -Recurse -Force
+      Write-Host "Replaced existing $Name skill: $destination"
     }
   }
 

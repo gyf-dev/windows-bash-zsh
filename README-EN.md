@@ -10,6 +10,108 @@
 
 Turn Git Bash on Windows into a zsh terminal environment close to the macOS/Linux experience: Windows Terminal, Oh My Zsh, Starship, fzf, common zsh plugins, and modern CLI tools such as bat, ripgrep, lsd, and yazi.
 
+## Screenshot
+
+![windows-bash-zsh screenshot](效果图.png)
+
+## Quick Start
+
+### Download or clone this project to your computer
+
+```shell
+git clone git@github.com:gyf-dev/windows-bash-zsh.git
+```
+
+### Install
+
+PowerShell:
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1
+```
+
+CMD:
+
+```cmd
+install-to-skills.cmd
+```
+
+Bash:
+
+```shell
+bash install-to-skills.sh
+```
+
+Default targets:
+
+- Codex: `~\.codex\skills\windows-bash-zsh`
+- Claude: `~\.claude\skills\windows-bash-zsh`
+- Agents: `~\.agents\skills\windows-bash-zsh`
+- Copilot: `~\.copilot\skills\windows-bash-zsh`
+
+### Uninstall
+
+PowerShell:
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Uninstall
+```
+
+CMD:
+
+```cmd
+install-to-skills.cmd -Uninstall
+```
+
+Bash:
+
+```shell
+bash install-to-skills.sh --uninstall
+```
+
+### Other
+
+PowerShell:
+
+```powershell
+# Install only to a target, for example Codex
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets codex
+
+# Uninstall only from Copilot
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets copilot -Uninstall
+
+# Also install to a custom skills directory
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -ExtraSkillRoots "D:\MyAgent\skills"
+```
+
+CMD:
+
+```cmd
+# Install only to a target, for example Codex
+install-to-skills.cmd -Targets codex
+
+# Uninstall only from Copilot
+install-to-skills.cmd -Targets copilot -Uninstall
+
+# Also install to a custom skills directory
+install-to-skills.cmd -ExtraSkillRoots "D:\MyAgent\skills"
+```
+
+Bash:
+
+```shell
+# Install only to a target, for example Codex
+bash install-to-skills.sh --targets codex
+
+# Uninstall only from Copilot
+bash install-to-skills.sh --targets copilot --uninstall
+
+# Also install to a custom skills directory
+bash install-to-skills.sh --extra-skill-roots "D:/MyAgent/skills"
+```
+
+`-ExtraSkillRoots` is an explicit target; during installation, the script creates it when it does not exist. If the same Skill already exists, the script asks whether to replace it; enter `y` to overwrite, or anything else to skip. During uninstall, only the `windows-bash-zsh` directory under the target root is removed; the skills root is kept.
+
 ## Features
 
 - **Windows Terminal integration**: Add a Git Bash profile, configure the default terminal, font, and common shortcuts.
@@ -28,67 +130,6 @@ Turn Git Bash on Windows into a zsh terminal environment close to the macOS/Linu
 - Windows Package Manager, winget, for installing Starship and CLI tools
 - Python 3 for safely extracting the zsh package
 - Administrator permission for copying zsh files into the Git installation directory
-
-## Screenshot
-
-![windows-bash-zsh screenshot](效果图.png)
-
-## Quick Start
-
-### Download or clone this project to your computer
-
-```shell
-git clone git@github.com:gyf-dev/windows-bash-zsh.git
-```
-
-### Install into skills
-
-```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1
-```
-
-You can also use the CMD entry:
-
-```cmd
-install-to-skills.cmd
-```
-
-Default targets:
-
-- Codex: `~\.codex\skills\windows-bash-zsh`
-- Claude: `~\.claude\skills\windows-bash-zsh`
-- Agents: `~\.agents\skills\windows-bash-zsh`
-- Copilot: `~\.copilot\skills\windows-bash-zsh`
-
-Other optional commands:
-
-```powershell
-# Install only to Codex
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets codex
-install-to-skills.cmd -Targets codex
-
-# Install only to Copilot
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets copilot
-install-to-skills.cmd -Targets copilot
-
-# Preview target paths without writing files
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -DryRun
-install-to-skills.cmd -DryRun
-
-# Uninstall windows-bash-zsh from default targets
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Uninstall
-install-to-skills.cmd -Uninstall
-
-# Uninstall only from Copilot
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets copilot -Uninstall
-install-to-skills.cmd -Targets copilot -Uninstall
-
-# Also install to a custom skills directory
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -ExtraSkillRoots "D:\MyAgent\skills"
-install-to-skills.cmd -ExtraSkillRoots "D:\MyAgent\skills"
-```
-
-`-ExtraSkillRoots` is an explicit target; during installation, the script creates it when it does not exist. During uninstall, only the `windows-bash-zsh` directory under the target root is removed; backup directories and the skills root are kept.
 
 ## Workflow Diagram
 

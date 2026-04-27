@@ -10,6 +10,107 @@
 
 把 Windows 上的 Git Bash 打造成接近 macOS/Linux 体验的 zsh 终端环境：集成 Windows Terminal、Oh My Zsh、Starship、fzf、常用 zsh 插件，以及 bat、ripgrep、lsd、yazi 等现代 CLI 工具。
 
+## 效果图
+
+![windows-bash-zsh 效果图](效果图.png)
+
+## 快速开始
+
+### 下载或者克隆本项目到电脑上
+```shell
+ git clone git@github.com:gyf-dev/windows-bash-zsh.git
+```
+
+### 安装
+
+PowerShell：
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1
+```
+
+CMD：
+
+```cmd
+install-to-skills.cmd
+```
+
+Bash：
+
+```shell
+bash install-to-skills.sh
+```
+
+默认目标：
+
+- Codex：`~\.codex\skills\windows-bash-zsh`
+- Claude：`~\.claude\skills\windows-bash-zsh`
+- Agents：`~\.agents\skills\windows-bash-zsh`
+- Copilot：`~\.copilot\skills\windows-bash-zsh`
+
+### 卸载
+
+PowerShell：
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Uninstall
+```
+
+CMD：
+
+```cmd
+install-to-skills.cmd -Uninstall
+```
+
+Bash：
+
+```shell
+bash install-to-skills.sh --uninstall
+```
+
+### 其他
+
+PowerShell：
+
+```powershell
+# 只安装到指定目标，例如 Codex
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets codex
+
+# 只从 Copilot 卸载
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets copilot -Uninstall
+
+# 额外安装到自定义 skills 目录
+powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -ExtraSkillRoots "D:\MyAgent\skills"
+```
+
+CMD：
+
+```cmd
+# 只安装到指定目标，例如 Codex
+install-to-skills.cmd -Targets codex
+
+# 只从 Copilot 卸载
+install-to-skills.cmd -Targets copilot -Uninstall
+
+# 额外安装到自定义 skills 目录
+install-to-skills.cmd -ExtraSkillRoots "D:\MyAgent\skills"
+```
+
+Bash：
+
+```shell
+# 只安装到指定目标，例如 Codex
+bash install-to-skills.sh --targets codex
+
+# 只从 Copilot 卸载
+bash install-to-skills.sh --targets copilot --uninstall
+
+# 额外安装到自定义 skills 目录
+bash install-to-skills.sh --extra-skill-roots "D:/MyAgent/skills"
+```
+
+`-ExtraSkillRoots` 是用户显式指定的目标；安装时如果目录不存在，脚本会创建它。安装遇到同名 Skill 时会询问是否替换，输入 `y` 才会覆盖，否则跳过。卸载时只删除目标目录下的 `windows-bash-zsh`，不会删除 skills 根目录。
+
 ## 功能特性
 
 - **Windows Terminal 集成**：添加 Git Bash profile，配置默认终端、字体和常用快捷键。
@@ -28,66 +129,6 @@
 - Windows Package Manager（winget，用于安装 Starship 和 CLI 工具）
 - Python 3（用于安全解压 zsh 包）
 - 管理员权限（用于把 zsh 文件复制到 Git 安装目录）
-
-## 效果图
-
-![windows-bash-zsh 效果图](效果图.png)
-
-## 快速开始
-
-### 下载或者克隆本项目到电脑上
-```shell
- git clone git@github.com:gyf-dev/windows-bash-zsh.git
-```
-
-### 安装到skills中
-
-```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1
-```
-
-也可以使用 CMD 入口：
-
-```cmd
-install-to-skills.cmd
-```
-
-默认目标：
-
-- Codex：`~\.codex\skills\windows-bash-zsh`
-- Claude：`~\.claude\skills\windows-bash-zsh`
-- Agents：`~\.agents\skills\windows-bash-zsh`
-- Copilot：`~\.copilot\skills\windows-bash-zsh`
-
-其他可选命令：
-
-```powershell
-# 只安装到 Codex
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets codex
-install-to-skills.cmd -Targets codex
-
-# 只安装到 Copilot
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets copilot
-install-to-skills.cmd -Targets copilot
-
-# 预览将要安装到哪里，不实际写入
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -DryRun
-install-to-skills.cmd -DryRun
-
-# 卸载默认目标中已安装的 windows-bash-zsh
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Uninstall
-install-to-skills.cmd -Uninstall
-
-# 只从 Copilot 卸载
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -Targets copilot -Uninstall
-install-to-skills.cmd -Targets copilot -Uninstall
-
-# 额外安装到自定义 skills 目录
-powershell.exe -ExecutionPolicy Bypass -File .\install-to-skills.ps1 -ExtraSkillRoots "D:\MyAgent\skills"
-install-to-skills.cmd -ExtraSkillRoots "D:\MyAgent\skills"
-```
-
-`-ExtraSkillRoots` 是用户显式指定的目标；安装时如果目录不存在，脚本会创建它。卸载时只删除目标目录下的 `windows-bash-zsh`，不会删除备份目录或 skills 根目录。
 
 ## 流程示意图
 
