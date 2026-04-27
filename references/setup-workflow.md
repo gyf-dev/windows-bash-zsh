@@ -238,7 +238,84 @@ git clone https://github.com/MichaelAquilina/zsh-you-should-use.git \
   "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/you-should-use"
 ```
 
-## 第十一步：幂等更新 profile 文件
+## 第十一步：现代 CLI 工具
+
+这一步集成原 `cli-tools` 技能的内容，属于推荐但可选的增强层。完整配置时建议安装；如果用户只想要 zsh/Starship，不要强制安装。
+
+| 工具 | 用途 | 常见命令或别名 |
+| --- | --- | --- |
+| `bat` | 带语法高亮的 `cat` 替代品 | `bat` / 可选 `cat` |
+| `ripgrep` | 高速全文搜索 | `rg` |
+| `lsd` | 现代化 `ls` | 可选 `ls` / `ll` / `la` / `lt` / `l` |
+| `yazi` | 终端文件管理器 | `yazi` / 可选 `ya` |
+
+yazi 的预览能力还依赖这些工具：
+
+| 依赖 | 用途 |
+| --- | --- |
+| `7-Zip` / `p7zip` | 预览或处理压缩包 |
+| `ImageMagick` | 图片预览 |
+| `FFmpeg` | 音视频预览 |
+
+优先使用随附脚本检查状态：
+
+```bash
+bash "<skill目录>/scripts/cli-tools.sh" status
+```
+
+需要安装时运行：
+
+```bash
+bash "<skill目录>/scripts/cli-tools.sh" install
+```
+
+Windows 下也可以手动安装：
+
+```bash
+winget.exe install --id sharkdp.bat --exact --accept-package-agreements --accept-source-agreements
+winget.exe install --id BurntSushi.ripgrep.MSVC --exact --accept-package-agreements --accept-source-agreements
+winget.exe install --id lsd-rs.lsd --exact --accept-package-agreements --accept-source-agreements
+winget.exe install --id sxyazi.yazi --exact --accept-package-agreements --accept-source-agreements
+winget.exe install --id 7zip.7zip --exact --accept-package-agreements --accept-source-agreements
+winget.exe install --id ImageMagick.Q16 --exact --accept-package-agreements --accept-source-agreements
+winget.exe install --id Gyan.FFmpeg --exact --accept-package-agreements --accept-source-agreements
+```
+
+配置 bat：
+
+```bash
+bat --generate-config-file
+```
+
+然后把 `assets/bat-config` 中的推荐配置合并到 bat 配置文件。Windows 路径通常是 `%APPDATA%\bat\config`；Git Bash 中可通过下面命令查看：
+
+```bash
+bat --config-file
+```
+
+配置 shell 别名时，使用 `assets/cli-tools-aliases.zsh` 作为参考片段，但仍然必须定点幂等处理：
+
+1. 先读取 `~/.zshrc`。
+2. 如果已有同名 alias，例如 `alias ls=...` 或 `alias cat=...`，保留用户现有写法，不要覆盖。
+3. 只追加缺失的 alias，例如 `ll`、`la`、`lt`、`ya`。
+4. 只有 `/c/Program Files/7-Zip` 存在且 PATH 未包含它时，才追加 7-Zip PATH。
+5. 不要因为加入这些 alias 删除 Oh My Zsh 模板注释、用户 PATH 或其他配置。
+
+常见检查命令：
+
+```bash
+bat --version
+rg --version
+lsd --version
+yazi --version
+7z --help >/dev/null 2>&1 || "/c/Program Files/7-Zip/7z.exe" --help >/dev/null 2>&1
+magick -version
+ffmpeg -version
+```
+
+如果安装后命令不可用，先重启 Git Bash 或运行 `exec zsh`。Windows 下 `winget` 安装的软件可能需要新终端才能刷新 PATH。
+
+## 第十二步：幂等更新 profile 文件
 
 编辑前先备份：
 
@@ -316,13 +393,13 @@ plugins=(
 
 如果 `~/.zshrc` 没有 `plugins=(...)`，先确认是否已经安装 Oh My Zsh。若已安装但缺失该块，只在 `source $ZSH/oh-my-zsh.sh` 之前插入插件块；若无法确定插入点，在最终回复中说明并请用户确认，不要猜测重写文件。
 
-`assets/zshrc-block.zsh` 只用于补充缺失的托管小块，例如 fzf 选项、Starship 初始化、autosuggest 样式和 `open()`。如果这些内容已经在用户 `.zshrc` 里存在，优先保留现有写法，不要重复添加。
+`assets/zshrc-block.zsh` 只用于补充缺失的托管小块，例如 fzf 选项、Starship 初始化、autosuggest 样式和 `open()`。如果这些内容已经在用户 `.zshrc` 里存在，优先保留现有写法，不要重复添加。CLI 工具别名使用 `assets/cli-tools-aliases.zsh` 作为参考，也必须逐项合并，不能覆盖用户已有 alias。
 
 验证时如果发现 `~/.bashrc` 缺少 `/c/Windows/System32/chcp.com 65001 >/dev/null 2>&1 || true`，直接按 `assets/bashrc-block.sh` 补齐缺失配置片段，不要仅提示用户。该行用于稳定 Git Bash 启动时的 UTF-8 编码。
 
 如果用户之前在 `~/.bashrc` 里写过 alias、PATH、语言环境、Node/NVM/Volta 等配置，提醒用户迁移到 `~/.zshrc` 或拆成可被 zsh source 的独立文件；不要自动删除用户原有 `.bashrc` 内容。
 
-## 第十二步：验证
+## 第十三步：验证
 
 打开新的 Windows Terminal / Git Bash 窗口并运行：
 
@@ -340,6 +417,10 @@ grep -F "chcp.com 65001" "$HOME/.bashrc"
 grep -F "exec zsh" "$HOME/.bashrc"
 grep -F "starship init zsh" "$HOME/.zshrc"
 grep -F "zsh-autosuggestions" "$HOME/.zshrc"
+bat --version
+rg --version
+lsd --version
+yazi --version
 ```
 
 如果 `.bashrc` 检查失败，按上面的定点算法补齐缺失项。若 `.zshrc` 检查失败，也按定点算法修复缺失项；不能整文件覆盖，也不能删除注释。

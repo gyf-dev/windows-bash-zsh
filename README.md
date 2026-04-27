@@ -15,6 +15,7 @@
 - **Starship 主题** - Catppuccin Mocha 配色，美观的命令行提示符
 - **Zsh + Oh My Zsh** - 强大的 Shell 框架和插件管理
 - **常用插件** - 自动建议、语法高亮、fzf 模糊搜索等
+- **现代 CLI 工具** - 集成 bat、ripgrep、lsd、yazi 以及 yazi 预览依赖
 - **open 命令** - 在 Windows 上提供类似 macOS 的 `open` 命令
 - **一键配置** - 按照 SKILL.md 步骤操作即可完成配置
 
@@ -28,15 +29,19 @@
 - `starship.toml`：Starship 主题配置
 - `bashrc-block.sh`：可幂等写入 `.bashrc` 的托管配置块
 - `zshrc-block.zsh`：可幂等写入 `.zshrc` 的托管配置块
+- `cli-tools-aliases.zsh`：现代 CLI 工具别名和 7-Zip PATH 片段
+- `bat-config`：bat 推荐配置
+
+现代 CLI 工具安装脚本在 [scripts/cli-tools.sh](scripts/cli-tools.sh)，支持 `install`、`status` 和 `uninstall`。
 
 ## 流程示意图
 
 ```mermaid
 flowchart TB
   A["准备环境<br/>Windows / Git Bash / Nerd Font"]
-  B["安装组件<br/>Starship / zsh / Oh My Zsh / fzf"]
+  B["安装组件<br/>Starship / zsh / Oh My Zsh / CLI tools"]
   C["写入配置<br/>starship.toml / .bashrc / .zshrc"]
-  D["终端体验<br/>美观提示符 / 自动建议 / open 命令"]
+  D["终端体验<br/>美观提示符 / 自动建议 / 快速搜索"]
 
   A --> B --> C --> D
 
@@ -51,6 +56,7 @@ flowchart TB
 
 - Windows 10/11
 - Git for Windows（Git Bash）
+- Windows Package Manager（winget，用于安装 Starship 和 CLI 工具）
 - Python 3（用于解压 zsh 包）
 - 管理员权限（用于复制 zsh 文件到 Git 目录）
 

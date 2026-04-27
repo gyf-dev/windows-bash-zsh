@@ -1,11 +1,11 @@
 ---
 name: windows-bash-zsh
-description: 在 Windows 中配置、修复或说明 Git Bash、Windows Terminal、PowerShell、zsh、Oh My Zsh、Starship、Nerd Font、VS Code 终端、fzf 和常用 zsh 插件。适用于用户要求安装或排查 Windows Bash/zsh/Starship 终端环境，包括 Windows Terminal 添加 Git Bash profile、设置默认终端、快捷键、中文乱码、VS Code 默认终端、.bashrc/.zshrc 配置、MSYS2 zsh 包安装、PATH 或字体问题、插件报错、UTF-8 编码问题、管理员复制步骤，以及从 zsh 回退到 Bash。
+description: 在 Windows 中配置、修复或说明 Git Bash、Windows Terminal、PowerShell、zsh、Oh My Zsh、Starship、Nerd Font、VS Code 终端、fzf、常用 zsh 插件，以及 bat、ripgrep、lsd、yazi 等现代 CLI 工具。适用于用户要求安装或排查 Windows Bash/zsh/Starship 终端环境，包括 Windows Terminal 添加 Git Bash profile、设置默认终端、快捷键、中文乱码、VS Code 默认终端、.bashrc/.zshrc 配置、MSYS2 zsh 包安装、PATH 或字体问题、插件报错、UTF-8 编码问题、现代 CLI 工具安装与别名配置、管理员复制步骤，以及从 zsh 回退到 Bash。
 ---
 
 # Windows Bash Zsh
 
-使用本技能帮助用户把 Windows 上的 Git Bash 配置成基于 zsh 的终端环境，并集成 Starship、Oh My Zsh、fzf 和常用插件。
+使用本技能帮助用户把 Windows 上的 Git Bash 配置成基于 zsh 的终端环境，并集成 Starship、Oh My Zsh、fzf、常用插件和现代 CLI 工具。
 
 ## 操作规则
 
@@ -19,6 +19,9 @@ description: 在 Windows 中配置、修复或说明 Git Bash、Windows Terminal
 - 修改 Windows Terminal `settings.json` 前必须备份，不要整文件覆盖；只合并 Git Bash profile、默认 profile、快捷键和粘贴/复制相关字段。
 - 不要假设 MSYS2 的 zsh 包版本固定不变。下载前使用用户提供的固定包地址，或从 MSYS2 镜像中发现最新的 `zsh-*-x86_64.pkg.tar.zst`。
 - shell 初始化阶段避免使用带空格的路径。把 `starship.exe` 复制到 `~/bin/starship.exe`，并把 `~/bin` 放在 `PATH` 前面。
+- 现代 CLI 工具层包含 `bat`、`ripgrep`、`lsd`、`yazi`，以及 yazi 预览常用依赖 `7-Zip`、`ImageMagick`、`FFmpeg`。当用户要求完整配置或安装 CLI 工具时，使用 `scripts/cli-tools.sh` 检查或安装；不需要时把它作为可选步骤说明。
+- 写入 CLI 别名时只能定点追加缺失项。不要覆盖用户已有的 `alias cat`、`alias ls`、`alias ll`、`alias la`、`alias lt`、`alias l` 或 `alias ya`；如已有同名 alias，保留用户写法并在最终回复中说明。`assets/cli-tools-aliases.zsh` 是参考片段，不是完整 `.zshrc`。
+- Windows 下 7-Zip 可能不会自动进入 Git Bash 的 `PATH`。只有确认 `/c/Program Files/7-Zip` 存在且当前 PATH 未包含它时，才追加该路径。
 - 验证时发现 `~/.bashrc` 缺少本技能需要的启动配置时，只能补齐缺失片段；不要整文件覆盖，也不要只提示“可能没问题”。尤其 `~/.bashrc` 必须包含 `chcp 65001` UTF-8 设置。验证 `.zshrc` 时优先修复具体缺失项，不要用 `assets/zshrc-block.zsh` 覆盖用户原有 Oh My Zsh 模板内容。
 - 编写 `.tar.zst` 解压代码时，解压前必须校验 tar 成员路径，避免路径穿越。
 - 排障时按层验证：Git Bash 存在、Starship 能从 `~/bin` 运行、zsh 能运行、Oh My Zsh 存在、外部插件存在，最后再检查 profile 文件是否正确加载。
@@ -32,6 +35,9 @@ description: 在 Windows 中配置、修复或说明 Git Bash、Windows Terminal
 - `assets/bashrc-block.sh`：托管的 `.bashrc` 配置块，负责设置 UTF-8、暴露 `~/bin`，并在 zsh 可用时自动进入 zsh。
 - `assets/zsh-plugins.txt`：期望启用的 Oh My Zsh 插件列表。用于幂等更新现有 `plugins=(...)`，不要整段重写 `.zshrc`。
 - `assets/zshrc-block.zsh`：`.zshrc` 的最小托管补充块，只包含 PATH、fzf、Starship 初始化、autosuggest 样式和 Windows 上的 `open` 辅助命令；不包含 Oh My Zsh 模板、`plugins=(...)` 或 `source $ZSH/oh-my-zsh.sh`。
+- `assets/cli-tools-aliases.zsh`：bat、lsd、yazi 和 7-Zip PATH 的可选别名/路径片段。只能按缺失项合并，不能覆盖用户已有 alias。
+- `assets/bat-config`：bat 的推荐配置片段。
+- `scripts/cli-tools.sh`：bat、ripgrep、lsd、yazi 及 yazi 预览依赖的安装、卸载和状态检查脚本。
 - `references/setup-workflow.md`：详细安装、更新、回退和排障流程。
 
 当用户需要逐步安装、排障或可执行命令时，读取 `references/setup-workflow.md`。当需要创建或更新配置文件时，直接使用 `assets/` 中的模板。
@@ -54,10 +60,15 @@ description: 在 Windows 中配置、修复或说明 Git Bash、Windows Terminal
    - `zsh-syntax-highlighting`
    - `fzf`
    - `you-should-use`
-7. 使用随附模板更新 `~/.config/starship.toml`、`~/.bashrc` 和 `~/.zshrc`。
-8. 打开新的 Windows Terminal / Git Bash 窗口并验证：
+7. 按需安装现代 CLI 工具：`bat`、`ripgrep`、`lsd`、`yazi`、`7-Zip`、`ImageMagick`、`FFmpeg`。
+8. 使用随附模板更新 `~/.config/starship.toml`、`~/.bashrc` 和 `~/.zshrc`，并按需合并 CLI 别名。
+9. 打开新的 Windows Terminal / Git Bash 窗口并验证：
    - `zsh --version`
    - `~/bin/starship.exe --version`
+   - `bat --version`
+   - `rg --version`
+   - `lsd --version`
+   - `yazi --version`
    - `echo $SHELL`
    - `echo $ZSH_VERSION`
 
@@ -67,4 +78,6 @@ description: 在 Windows 中配置、修复或说明 Git Bash、Windows Terminal
 - `compinit: function definition file not found`：zsh 文件没有完整复制到 Git 的 `usr` 目录。重新执行提权复制步骤。
 - `plugin not found`：确认插件目录存在于 `${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/` 下，并且目录名与 `.zshrc` 中的插件名一致。
 - 图标显示为方框：安装 Nerd Font，并在 Git Bash 选项中选中该字体。
+- `bat`、`rg`、`lsd` 或 `yazi` 安装后不可用：重启 Git Bash 或运行 `exec zsh`，再检查 `PATH`。Windows 下优先确认 `winget.exe list --id <包 ID> --exact` 是否能看到对应包。
+- yazi 无法预览压缩包、图片或视频：分别检查 `7z`、`magick`、`ffmpeg`/`ffprobe` 是否可用；Windows 下必要时把 `/c/Program Files/7-Zip` 加入 PATH。
 - 需要回到 Bash：只禁用 `.bashrc` 中由本技能添加的 `exec zsh` 行，或删除本技能添加的相关配置片段。

@@ -15,6 +15,7 @@ Quickly configure a Git Bash terminal environment on Windows, including Zsh, Oh 
 - **Starship prompt**: Catppuccin Mocha color palette and a polished shell prompt.
 - **Zsh + Oh My Zsh**: A powerful shell framework and plugin ecosystem.
 - **Common plugins**: Autosuggestions, syntax highlighting, fzf fuzzy search, and more.
+- **Modern CLI tools**: Adds bat, ripgrep, lsd, yazi, and yazi preview dependencies.
 - **open command**: Adds a macOS-like `open` helper for Windows.
 - **Guided setup**: Follow `SKILL.md` and the referenced workflow to complete the configuration.
 
@@ -28,15 +29,19 @@ Reusable configuration templates are in [assets](assets/):
 - `starship.toml`: Starship theme configuration.
 - `bashrc-block.sh`: Managed `.bashrc` block for idempotent updates.
 - `zshrc-block.zsh`: Managed `.zshrc` block for idempotent updates.
+- `cli-tools-aliases.zsh`: Modern CLI aliases and a 7-Zip PATH helper.
+- `bat-config`: Recommended bat configuration.
+
+The modern CLI installer lives at [scripts/cli-tools.sh](scripts/cli-tools.sh) and supports `install`, `status`, and `uninstall`.
 
 ## Workflow Diagram
 
 ```mermaid
 flowchart TB
   A["Prepare<br/>Windows / Git Bash / Nerd Font"]
-  B["Install<br/>Starship / zsh / Oh My Zsh / fzf"]
+  B["Install<br/>Starship / zsh / Oh My Zsh / CLI tools"]
   C["Configure<br/>starship.toml / .bashrc / .zshrc"]
-  D["Experience<br/>Polished prompt / Suggestions / open command"]
+  D["Experience<br/>Polished prompt / Suggestions / Fast search"]
 
   A --> B --> C --> D
 
@@ -51,6 +56,7 @@ flowchart TB
 
 - Windows 10/11
 - Git for Windows, including Git Bash
+- Windows Package Manager, winget, for installing Starship and CLI tools
 - Python 3 for extracting the zsh package
 - Administrator permission for copying zsh files into the Git installation directory
 
