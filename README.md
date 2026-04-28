@@ -19,7 +19,7 @@ Turn Git Bash on Windows into a zsh terminal environment close to the macOS/Linu
 ### Download or clone this project to your computer
 
 ```shell
-git clone git@github.com:gyf-dev/windows-bash-zsh.git
+git clone https://github.com/gyf-dev/windows-bash-zsh.git
 ```
 
 ### Install

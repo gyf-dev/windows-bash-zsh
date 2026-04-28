@@ -18,7 +18,7 @@
 
 ### 下载或者克隆本项目到电脑上
 ```shell
- git clone git@github.com:gyf-dev/windows-bash-zsh.git
+ git clone https://github.com/gyf-dev/windows-bash-zsh.git
 ```
 
 ### 安装
