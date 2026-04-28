@@ -31,12 +31,22 @@ EOF
 split_csv() {
   local input="$1"
   local output_name="$2"
-  local -n output_ref="$output_name"
+  local items=()
   local index
-  IFS=',' read -r -a output_ref <<<"$input"
-  for index in "${!output_ref[@]}"; do
-    output_ref[$index]="$(printf '%s' "${output_ref[$index]}" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+
+  IFS=',' read -r -a items <<<"$input"
+  for index in "${!items[@]}"; do
+    items[$index]="$(printf '%s' "${items[$index]}" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
   done
+
+  case "$output_name" in
+    targets) targets=("${items[@]}") ;;
+    extra_roots) extra_roots=("${items[@]}") ;;
+    *)
+      echo "Unknown output array: $output_name" >&2
+      exit 2
+      ;;
+  esac
 }
 
 while [ $# -gt 0 ]; do

@@ -284,11 +284,14 @@ echo.
 echo Options:
 echo   -Targets ^<list^>           Target list: all,codex,claude,agents,copilot
 echo   -ExtraSkillRoots ^<list^>   Extra skills root directories, comma separated
+echo   -DryRun                     Preview actions without writing files
+echo   -Yes                        Replace existing skill without prompting
 echo   -Uninstall                  Remove windows-bash-zsh from target skills roots
 echo   -h, --help                  Show this help
 echo.
 echo Examples:
 echo   install.cmd
+echo   install.cmd -DryRun
 echo   install.cmd -Targets codex
 echo   install.cmd -Targets copilot -Uninstall
 echo   install.cmd -ExtraSkillRoots "D:\MyAgent\skills"

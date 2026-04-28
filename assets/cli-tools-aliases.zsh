@@ -1,4 +1,5 @@
-# Optional modern CLI aliases. Add only missing aliases to user profiles.
+# Managed modern CLI aliases. Put this block near the end of ~/.zshrc so it wins
+# over Oh My Zsh's default aliases. Back up ~/.zshrc before updating this block.
 
 if command -v bat >/dev/null 2>&1; then
   alias cat="bat --paging=never"
@@ -18,6 +19,7 @@ if command -v yazi >/dev/null 2>&1; then
   alias ya="yazi"
 fi
 
-if [ -d "/c/Program Files/7-Zip" ]; then
-  export PATH="/c/Program Files/7-Zip:$PATH"
-fi
+case ":$PATH:" in
+  *":/c/Program Files/7-Zip:"*) ;;
+  *) [ -d "/c/Program Files/7-Zip" ] && export PATH="/c/Program Files/7-Zip:$PATH" ;;
+esac
