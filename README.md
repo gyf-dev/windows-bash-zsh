@@ -10,9 +10,13 @@
 
 Turn Git Bash on Windows into a zsh terminal environment close to the macOS/Linux experience: Windows Terminal, Oh My Zsh, Starship, fzf, common zsh plugins, and modern CLI tools such as bat, ripgrep, lsd, and yazi.
 
-## Screenshot
+## Video
 
-![windows-bash-zsh screenshot](screenshot.png)
+<p align="center">
+  <video src="video.mp4" poster="screenshot.png" controls width="100%"></video>
+</p>
+
+[Open demo video](video.mp4)
 
 ## Quick Start
 

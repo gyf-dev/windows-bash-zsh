@@ -10,9 +10,13 @@
 
 把 Windows 上的 Git Bash 打造成接近 macOS/Linux 体验的 zsh 终端环境：集成 Windows Terminal、Oh My Zsh、Starship、fzf、常用 zsh 插件，以及 bat、ripgrep、lsd、yazi 等现代 CLI 工具。
 
-## 效果图
+## 演示视频
 
-![windows-bash-zsh 效果图](screenshot.png)
+<p align="center">
+  <video src="video.mp4" poster="screenshot.png" controls width="100%"></video>
+</p>
+
+[打开演示视频](video.mp4)
 
 ## 快速开始
 
