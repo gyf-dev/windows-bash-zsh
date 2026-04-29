@@ -61,6 +61,8 @@ Default targets:
 
 >**Then run the `windows-bash-zsh` Skill in the corresponding Agent platform. After it completes, reopen your terminal to enjoy a refreshed experience.**
 
+>**The first terminal launch may be a little slower because several zsh plugins are being loaded. Later launches should return to normal. If you do not need some plugins, edit `.zshrc` and remove them from the `plugins=(...)` list.**
+
 ### Uninstall
 
 PowerShell:
