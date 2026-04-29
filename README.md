@@ -59,7 +59,7 @@ Default targets:
 - Agents: `~\.agents\skills\windows-bash-zsh`
 - Copilot: `~\.copilot\skills\windows-bash-zsh`
 
-Then enable this Skill in the corresponding Agent platform, run `windows-bash-zsh`, and reopen your terminal to experience zsh in Git Bash.
+>**Then enable this Skill in the corresponding Agent platform, run `windows-bash-zsh`, and reopen your terminal to experience zsh in Git Bash.**
 
 ### Uninstall
 

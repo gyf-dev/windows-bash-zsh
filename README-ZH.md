@@ -58,7 +58,7 @@ bash install.sh
 - Agents：`~\.agents\skills\windows-bash-zsh`
 - Copilot：`~\.copilot\skills\windows-bash-zsh`
 
-然后在对应的 Agent 平台上启用这个 Skill，执行完成windows-bash-zsh后，重新打开终端，就可以在 Git Bash 中体验 zsh 了。
+>**然后在对应的 Agent 平台上启用这个 Skill，执行完成windows-bash-zsh后，重新打开终端，就可以在 Git Bash 中体验 zsh 了。**
 
 ### 卸载
 
