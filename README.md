@@ -1,8 +1,8 @@
-# windows-bash-zsh
-
 <p align="center">
   <img src="logo.png" alt="windows-bash-zsh logo" width="180">
 </p>
+
+<h1 align="center">windows-bash-zsh</h1>
 
 <p align="center">
   English | <a href="README-ZH.md">简体中文</a>
