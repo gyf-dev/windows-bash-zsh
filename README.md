@@ -20,7 +20,7 @@ Turn Git Bash on Windows into a zsh terminal environment close to the macOS/Linu
   <video src="video.mp4" poster="screenshot.png" controls width="100%"></video>
 </p>
 
-[Open demo video](video.mp4)
+[Open video](video.mp4)
 
 ## Quick Start
 
