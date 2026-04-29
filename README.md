@@ -10,6 +10,11 @@
 
 Turn Git Bash on Windows into a zsh terminal environment close to the macOS/Linux experience: Windows Terminal, Oh My Zsh, Starship, fzf, common zsh plugins, and modern CLI tools such as bat, ripgrep, lsd, and yazi.
 
+## Why Use This
+
+- **Better fit for AI-era CLI workflows**: Many AI agents, coding tools, and automation snippets assume a Bash-like shell. Running them directly in PowerShell often hits quoting, path, environment variable, and script compatibility issues. This Skill gives Git Bash a richer zsh-based environment while keeping the workflow close to familiar Unix shell behavior.
+- **A lighter alternative to WSL for terminal productivity**: WSL is powerful, but it also introduces another Linux filesystem, package layer, network boundary, and editor/runtime context. Editing the same Git repository from both Windows and WSL can also cause line-ending, permission, file-watcher, or path-related surprises. If you mainly want a smoother shell, prompt, plugin, and CLI-tool experience on Windows, enhancing Git Bash is simpler and keeps you closer to your existing Windows tools and files.
+
 ## Screenshot
 
 ![windows-bash-zsh screenshot](screenshot.png)

@@ -10,6 +10,11 @@
 
 把 Windows 上的 Git Bash 打造成接近 macOS/Linux 体验的 zsh 终端环境：集成 Windows Terminal、Oh My Zsh、Starship、fzf、常用 zsh 插件，以及 bat、ripgrep、lsd、yazi 等现代 CLI 工具。
 
+## 为什么使用
+
+- **更适合 AI 时代的 CLI 工作流**：很多 AI Agent、编码工具和自动化脚本默认假设 Bash-like shell 环境。直接在 PowerShell 中执行时，经常会遇到引号、路径、环境变量和脚本兼容问题。这个 Skill 会把 Git Bash 增强成更完整的 zsh 终端环境，让命令执行体验更接近熟悉的 Unix shell。
+- **比 WSL 更轻量的终端增强方案**：WSL 很强大，但也会带来另一套 Linux 文件系统、包管理层、网络边界和编辑器/运行时上下文。同一份 Git 仓库如果同时在 Windows 和 WSL 环境下编辑，还可能出现换行符、文件权限、文件监听或路径差异导致的异常。如果你主要想要更顺手的 shell、提示符、插件和 CLI 工具体验，增强 Git Bash 会更简单，也更贴近现有的 Windows 工具和文件。
+
 ## 效果图
 
 ![windows-bash-zsh 效果图](screenshot.png)
