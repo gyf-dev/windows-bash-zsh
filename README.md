@@ -23,8 +23,6 @@ Turn Git Bash on Windows into a zsh terminal environment close to the macOS/Linu
 
 https://github.com/user-attachments/assets/ae0db197-57cd-4970-a094-9153c84ca70a
 
-[Open video](video.mp4)
-
 ## Quick Start
 
 ### Download or clone this project to your computer
