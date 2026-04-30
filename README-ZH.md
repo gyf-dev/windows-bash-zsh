@@ -21,11 +21,7 @@
 
 ## 演示视频
 
-<p align="center">
-  <video src="video.mp4" poster="screenshot.png" controls width="100%"></video>
-</p>
-
-[打开演示视频](video.mp4)
+https://github.com/user-attachments/assets/ae0db197-57cd-4970-a094-9153c84ca70a
 
 ## 快速开始
 
