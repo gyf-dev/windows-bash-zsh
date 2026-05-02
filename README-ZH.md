@@ -134,6 +134,7 @@ bash install.sh --extra-skill-roots "D:/MyAgent/skills"
 - **现代 CLI 工具**：集成 bat、ripgrep、lsd、yazi，以及 yazi 预览所需的 7-Zip、ImageMagick、FFmpeg。
 - **macOS-like open**：在 Windows 中提供类似 macOS 的 `open` 命令。
 - **幂等配置**：只补齐缺失配置，不整文件覆盖 `.bashrc`、`.zshrc`、Windows Terminal 或 VS Code 配置。
+- **Claude Code Statusline**：参见 [references/claude-code-statusline.md](references/claude-code-statusline.md)，配置终端底部状态栏，显示项目、模型、上下文用量、Git 分支和费用估算。
 
 ## 环境要求
 

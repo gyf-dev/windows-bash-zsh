@@ -38,7 +38,7 @@ Terminal 和可选现代 CLI 工具。
 - `assets/cli-tools-aliases.zsh`：bat、lsd、yazi 和 7-Zip PATH 的 marker 受管块，用于 `.zshrc` 末尾。
 - `assets/starship.toml`、`assets/bat-config`、`assets/windows-terminal-*.json`、`assets/vscode-terminal-settings.json`
   ：按需复制或合并。
-- `scripts/cli-tools.sh`：bat、ripgrep、lsd、yazi 及 yazi 预览依赖的状态检查、安装和卸载脚本。
+- `references/claude-code-statusline.md`：在已配置好的 zsh 环境中给 Claude Code 添加终端状态栏（显示项目、模型、上下文用量、Git 分支、费用估算）。涵盖 jq 安装、Git Bash PATH 陷阱、JSON 转义要点和完整命令。
 
 ## 默认流程
 

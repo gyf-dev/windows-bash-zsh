@@ -135,6 +135,7 @@ bash install.sh --extra-skill-roots "D:/MyAgent/skills"
 - **Modern CLI tools**: Integrate bat, ripgrep, lsd, yazi, plus yazi preview dependencies: 7-Zip, ImageMagick, and FFmpeg.
 - **macOS-like open**: Provide a macOS-like `open` command on Windows.
 - **Idempotent configuration**: Fill in missing configuration only; do not overwrite `.bashrc`, `.zshrc`, Windows Terminal, or VS Code settings.
+- **Claude Code Statusline**: See [references/claude-code-statusline.md](references/claude-code-statusline.md) for configuring the terminal status bar showing project, model, context usage, git branch, and cost estimate.
 
 ## Requirements
 
